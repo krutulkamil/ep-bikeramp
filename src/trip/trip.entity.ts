@@ -27,4 +27,7 @@ export class TripEntity {
 
     @Column({ type: 'date' })
     date: Date;
+
+    @Column()
+    distance: number;
 }
