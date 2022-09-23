@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { GoogleMapsService } from '../google-maps/google-maps.service';
+import { GoogleMapService } from '../google-map/google-map.service';
 import { TripEntity } from './trip.entity';
 import { TripDto } from './trip.dto';
 import { TripType } from '../types/trip.type';
@@ -10,7 +10,7 @@ import { TripType } from '../types/trip.type';
 export class TripService {
     constructor(
         @InjectRepository(TripEntity) private readonly tripRepository: Repository<TripEntity>,
-        private readonly googleMapsService: GoogleMapsService
+        private readonly googleMapsService: GoogleMapService
     ) {};
 
     async getAllTrips(): Promise<TripType[]> {

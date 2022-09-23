@@ -3,7 +3,7 @@ import { ConfigService } from '@nestjs/config';
 import { Client, Distance, TravelMode } from '@googlemaps/google-maps-services-js';
 
 @Injectable()
-export class GoogleMapsService extends Client {
+export class GoogleMapService extends Client {
     constructor(private readonly configService: ConfigService) {
         super();
     }

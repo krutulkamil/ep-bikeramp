@@ -5,6 +5,7 @@ import configuration from './config/configuration';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TripModule } from './trip/trip.module';
+import { StatModule } from './stat/stat.module';
 
 @Module({
     imports: [
@@ -18,7 +19,8 @@ import { TripModule } from './trip/trip.module';
             autoLoadEntities: true,
             synchronize: true
         }),
-        TripModule
+        TripModule,
+        StatModule
     ],
     controllers: [AppController],
     providers: [AppService]

@@ -3,12 +3,12 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { TripService } from './trip.service';
 import { TripController } from './trip.controller';
 import { TripEntity } from './trip.entity';
-import { GoogleMapsModule } from '../google-maps/google-maps.module';
+import { GoogleMapModule } from '../google-map/google-map.module';
 
 @Module({
     imports: [
         TypeOrmModule.forFeature([TripEntity]),
-        GoogleMapsModule
+        GoogleMapModule
     ],
     controllers: [TripController],
     providers: [TripService]
