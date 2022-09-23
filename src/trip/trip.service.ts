@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, HttpException, HttpStatus } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
@@ -11,7 +11,7 @@ import { TripType } from '../types/trip.type';
 export class TripService extends Client {
     constructor(
         @InjectRepository(TripEntity) private readonly tripRepository: Repository<TripEntity>,
-        private readonly configService: ConfigService,
+        private readonly configService: ConfigService
     ) {
         super();
     }
@@ -51,6 +51,14 @@ export class TripService extends Client {
         });
 
         const distance = data.rows[0].elements[0].distance;
+
+        const errorResponse = {
+            errors: {
+                "startAddress or destinationAddress": "Is invalid! Check addresses one more time!"
+            }
+        }
+
+        if (!distance) throw new HttpException(errorResponse, HttpStatus.UNPROCESSABLE_ENTITY);
         return distance;
     };
 }
