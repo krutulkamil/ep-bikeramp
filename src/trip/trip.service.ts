@@ -21,14 +21,14 @@ export class TripService extends Client {
     async getAllTrips(): Promise<TripType[]> {
         return await this.tripRepository.find({
             order: {
-                updatedAt: "DESC"
+                updated_at: "DESC"
             }
         });
     };
 
     async createTrip(dto: TripDto): Promise<TripType> {
         const { value } = await this.calculateDistance(
-            dto.startAddress, dto.destinationAddress
+            dto.start_address, dto.destination_address
         );
 
         const newTrip = this.tripRepository.create({...dto, distance: value});
@@ -38,13 +38,13 @@ export class TripService extends Client {
     };
 
     async calculateDistance(
-        startAddress: string,
-        destinationAddress: string
+        start_address: string,
+        destination_address: string
     ): Promise<Distance> {
         const { data } = await this.distancematrix({
             params: {
-                origins: [startAddress],
-                destinations: [destinationAddress],
+                origins: [start_address],
+                destinations: [destination_address],
                 mode: TravelMode.bicycling,
                 key: this.mapsKey
             }
@@ -54,7 +54,7 @@ export class TripService extends Client {
 
         const errorResponse = {
             errors: {
-                "startAddress or destinationAddress": "Is invalid! Check addresses one more time!"
+                "start_address or destination_address": "Is invalid! Check addresses one more time!"
             }
         }
 

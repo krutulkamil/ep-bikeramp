@@ -5,22 +5,22 @@ export class TripEntity {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @CreateDateColumn({ name: 'created_at' })
-    createdAt: Date;
+    @CreateDateColumn()
+    created_at: Date;
 
-    @CreateDateColumn({ name: 'updated_at' })
-    updatedAt: Date;
+    @CreateDateColumn()
+    updated_at: Date;
 
     @BeforeUpdate()
     updateTimestamp() {
-        this.updatedAt = new Date();
+        this.updated_at = new Date();
     }
 
-    @Column({ name: 'start_address' })
-    startAddress: string;
+    @Column()
+    start_address: string;
 
-    @Column({ name: 'destination_address' })
-    destinationAddress: string;
+    @Column()
+    destination_address: string;
 
     @Column({ type: 'decimal', precision: 10, scale: 2 })
     price: number;

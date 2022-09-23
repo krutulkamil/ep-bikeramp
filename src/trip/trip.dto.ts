@@ -9,11 +9,11 @@ const maxDate = new Date(2023, 0, 1)
 export class TripDto {
     @IsString()
     @IsNotEmpty({ message: 'Start address is required!' })
-    startAddress: string;
+    start_address: string;
 
     @IsString()
     @IsNotEmpty({ message: 'Destination address is required!' })
-    destinationAddress: string;
+    destination_address: string;
 
     @IsNumber({}, { message: 'Price must be a number!' })
     @IsNotEmpty({ message: 'Price is required!' })
