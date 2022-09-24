@@ -23,7 +23,7 @@ export class TripDto {
     @IsDate({ message: 'Date must be in proper date format!' })
     @Type(() => Date)
     @IsNotEmpty({ message: 'Date of a delivery is required!' })
-    @MinDate(yesterday, { message: 'Cannot add date before today!' })
+    // @MinDate(yesterday, { message: 'Cannot add date before today!' })
     @MaxDate(maxDate, { message: 'Only dates before 2023 supported!' })
     date: Date;
 }
