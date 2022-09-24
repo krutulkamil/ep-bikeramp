@@ -5,6 +5,20 @@ import { DateService } from '../utils/date/date.service';
 import { IMonthlyStats, IWeeklyStats } from '../types/stat.interface';
 import { TripType } from '../types/trip.type';
 
+const formatDistance = (distance: string | number): string => {
+    if (typeof distance === "string") {
+       return `${(+distance / 1000).toFixed(2)}km`;
+    }
+    return `${(distance / 1000).toFixed(2)}km`;
+};
+
+const formatCurrency = (value: string | number, currency = "PLN"): string => {
+    if (typeof value === "string") {
+        return `${(+value).toFixed(2)}${currency}`;
+    }
+    return `${(value).toFixed(2)}${currency}`;
+};
+
 @Injectable()
 export class StatService {
     constructor(
@@ -26,8 +40,8 @@ export class StatService {
             .map((week) => week.distance)
             .reduce((acc, item) => acc + item, 0);
 
-        const totalPriceFormatted = `${calculateTotalPrice}PLN`;
-        const totalDistanceFormatted = `${(calculateTotalDistance / 1000).toFixed(2)}km`
+        const totalPriceFormatted = formatCurrency(calculateTotalPrice);
+        const totalDistanceFormatted = formatDistance(calculateTotalDistance);
 
         return {
             total_distance: totalDistanceFormatted,
@@ -41,9 +55,9 @@ export class StatService {
 
         const monthlyTripsFormatted = monthlyTrips.map((trip) => ({
             day: this.dateService.formatDateString(trip.day),
-            total_distance: `${(+trip.total_distance / 1000).toFixed(2)}km`,
-            avg_ride: `${(+trip.avg_ride / 1000).toFixed(2)}km`,
-            avg_price: `${(+trip.avg_price).toFixed(2)}PLN`
+            total_distance: formatDistance(trip.total_distance),
+            avg_ride: formatDistance(trip.avg_ride),
+            avg_price: formatCurrency(trip.avg_price)
         }));
 
         return monthlyTripsFormatted;
