@@ -35,6 +35,17 @@ export class StatService {
         }
     };
 
-    // @ts-ignore
-    async getMonthlyStats(): Promise<IMonthlyStats[]> {};
+    async getMonthlyStats(): Promise<IMonthlyStats[]> {
+        const currentMonthQuery: string = this.dateService.getMonthlyQuery();
+        const monthlyTrips: IMonthlyStats[] = await this.dataSource.query(currentMonthQuery);
+
+        const monthlyTripsFormatted = monthlyTrips.map((trip) => ({
+            day: this.dateService.formatDateString(trip.day),
+            total_distance: `${(+trip.total_distance / 1000).toFixed(2)}km`,
+            avg_ride: `${(+trip.avg_ride / 1000).toFixed(2)}km`,
+            avg_price: `${(+trip.avg_price).toFixed(2)}PLN`
+        }));
+
+        return monthlyTripsFormatted;
+    };
 }
