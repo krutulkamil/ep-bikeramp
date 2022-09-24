@@ -15,11 +15,11 @@ export class DateService {
     private readonly monthStartDate = QUERY.MONTH_START;
     private readonly monthEndDate = QUERY.MONTH_END;
 
-    private getWeeklyQuery() {
+    getWeeklyQuery(): string {
         return `SELECT * FROM trip WHERE date BETWEEN ${this.weekStartDate} AND ${this.weekEndDate};`
     };
 
-    private getMonthlyQuery() {
+    getMonthlyQuery(): string {
         return `SELECT * FROM trip WHERE date BETWEEN ${this.monthStartDate} AND ${this.monthEndDate};`
     };
 
