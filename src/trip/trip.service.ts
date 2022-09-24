@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { GoogleMapService } from '../google-map/google-map.service';
+import { GoogleMapService } from '../utils/google-map/google-map.service';
 import { TripEntity } from './trip.entity';
 import { TripDto } from './trip.dto';
 import { TripType } from '../types/trip.type';

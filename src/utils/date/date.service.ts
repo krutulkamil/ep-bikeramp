@@ -1,12 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import * as moment from 'moment';
-
-enum QUERY {
-    WEEK_START = `(DATE_TRUNC('WEEK', CURRENT_DATE::TIMESTAMP)::DATE)`,
-    WEEK_END = `(DATE_TRUNC('WEEK', CURRENT_DATE::TIMESTAMP) + '6 DAYS'::INTERVAL)::DATE`,
-    MONTH_START = `(DATE_TRUNC('MONTH', CURRENT_DATE::TIMESTAMP)::DATE)`,
-    MONTH_END = `(DATE_TRUNC('MONTH', CURRENT_DATE::TIMESTAMP)::DATE + INTERVAL '1 MONTH - 1 DAY')::DATE`
-}
+import { QUERY } from '../../types/query.enum';
 
 @Injectable()
 export class DateService {
