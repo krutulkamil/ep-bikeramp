@@ -1,10 +1,5 @@
-import { IsString, IsNumber, IsDate, MinDate, MaxDate, IsPositive, IsNotEmpty } from 'class-validator';
+import { IsString, IsNumber, IsDate, MaxDate, IsPositive, IsNotEmpty } from 'class-validator';
 import { Type } from 'class-transformer';
-
-const today = new Date();
-const yesterday = new Date(today);
-yesterday.setDate(yesterday.getDate() - 1);
-const maxDate = new Date(2023, 0, 1)
 
 export class TripDto {
     @IsString()
@@ -23,7 +18,6 @@ export class TripDto {
     @IsDate({ message: 'Date must be in proper date format!' })
     @Type(() => Date)
     @IsNotEmpty({ message: 'Date of a delivery is required!' })
-    // @MinDate(yesterday, { message: 'Cannot add date before today!' })
-    @MaxDate(maxDate, { message: 'Only dates before 2023 supported!' })
+    @MaxDate(new Date(2023, 0, 1), { message: 'Only dates before 2023 supported!' })
     date: Date;
 }
