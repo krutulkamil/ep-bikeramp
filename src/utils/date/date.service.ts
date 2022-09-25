@@ -14,7 +14,7 @@ export class DateService {
     };
 
     getMonthlyQuery(): string {
-        return `SELECT date as day, SUM(distance) AS total_distance, AVG(distance) as avg_ride, AVG(price) as avg_price FROM trip WHERE date BETWEEN ${this.monthStartDate} AND ${this.monthEndDate} GROUP BY date;`
+        return `SELECT date as day, SUM(distance) AS total_distance, AVG(distance) as avg_ride, AVG(price) as avg_price FROM trip WHERE date BETWEEN ${this.monthStartDate} AND ${this.monthEndDate} GROUP BY date ORDER BY date ASC;`
     };
 
     formatDateString(date: string): string {
