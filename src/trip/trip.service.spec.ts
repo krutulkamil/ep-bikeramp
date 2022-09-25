@@ -1,9 +1,9 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { ConfigService } from '@nestjs/config';
 import { Repository } from 'typeorm';
 import { TripService } from './trip.service';
 import { GoogleMapService } from '../utils/google-map/google-map.service';
-import { ConfigService } from '@nestjs/config';
 import { TripEntity } from './trip.entity';
 import { TripType } from '../types/trip.type';
 
